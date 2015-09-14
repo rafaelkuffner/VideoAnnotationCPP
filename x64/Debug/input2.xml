@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input>
+	<AnnotationsFile>testAnnot.xml</AnnotationsFile>
+	<KinectTakeInfo>
+		<Take>
+			<Id>test</Id>
+			<ColorPath>D:\VideoAnnotationCPP\VideoAnnotationCPP\x64\Release\color2</ColorPath>
+			<DepthPath>D:\VideoAnnotationCPP\VideoAnnotationCPP\x64\Release\depth2</DepthPath>
+		</Take>
+	</KinectTakeInfo>
+	<CalibrationFile>calibfileNovo2.xml</CalibrationFile>
+</input>

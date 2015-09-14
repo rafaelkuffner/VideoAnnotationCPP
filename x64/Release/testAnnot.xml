@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotation_document>
+	<meta-data><author>Solidus</author><date>13/08/2015</date></meta-data>
+	<marks>
+		<mark id="0"><name>Mushroom</name><path>mush.png</path><color><red>255</red><green>240</green><blue>26</blue></color></mark>
+	</marks>
+	<session name="session_18_08_2015" date="18/08/2015">
+		<take name="test" multi-video="0"><file-name1>test.avi</file-name1><imported>0</imported>
+			<annotations>
+			<annotation_set><id>0</id><begin>600</begin><end>1000</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="text">
+					<id>0</id><begin>600</begin><end>1000</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+					<mode>0</mode><value>eu</value><position><x>800</x><y>550</y></position><scene-size><width>1920</width><height>1080</height></scene-size>
+					<formatting><color><red>1</red><green>0</green><blue>248</blue></color><font><family>.Helvetica Neue DeskInterface</family>
+					<size>13</size><bold>0</bold><italic>0</italic><underline>0</underline><strikeout>0</strikeout></font></formatting>
+				</annotation>
+			</annotation_set>
+			<annotation_set><id>0</id><begin>700</begin><end>1000</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="text">
+					<id>0</id><begin>700</begin><end>1000</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+					<mode>0</mode><value>cabeça</value><position><x>790</x><y>360</y></position><scene-size><width>1920</width><height>1080</height></scene-size>
+					<formatting><color><red>1</red><green>0</green><blue>248</blue></color><font><family>.Helvetica Neue DeskInterface</family>
+					<size>13</size><bold>0</bold><italic>0</italic><underline>0</underline><strikeout>0</strikeout></font></formatting>
+				</annotation>
+			</annotation_set>
+			<annotation_set><id>0</id><begin>800</begin><end>1000</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="text">
+					<id>0</id><begin>800</begin><end>1000</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+					<mode>0</mode><value>maçaneta</value><position><x>970</x><y>700</y></position><scene-size><width>1920</width><height>1080</height></scene-size>
+					<formatting><color><red>1</red><green>0</green><blue>248</blue></color><font><family>.Helvetica Neue DeskInterface</family>
+					<size>13</size><bold>0</bold><italic>0</italic><underline>0</underline><strikeout>0</strikeout></font></formatting>
+				</annotation>
+			</annotation_set>
+			
+			</annotations>
+		</take>
+	</session>
+</annotation_document>

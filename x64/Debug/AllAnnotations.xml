@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotation_document>
+	<meta-data><author>Solidus</author><date>13/08/2015</date></meta-data>
+	<marks>
+		<mark id="0"><name>Mushroom</name><path>mush.png</path><color><red>255</red><green>240</green><blue>26</blue></color></mark>
+	</marks>
+	<session name="session_18_08_2015" date="18/08/2015">
+		<take name="record_0" multi-video="0"><path1>VideoCortado.avi</path1><imported>0</imported>
+			<annotations>
+			<annotation_set><id>0</id><begin>6</begin><end>10</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="text">
+					<id>0</id><begin>6</begin><end>10</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+					<mode>0</mode><value>Claudia passando</value><position><x>1400</x><y>500</y></position><scene-size><width>1920</width><height>1080</height></scene-size>
+					<formatting><color><red>1</red><green>0</green><blue>248</blue></color><font><family>.Helvetica Neue DeskInterface</family>
+					<size>13</size><bold>0</bold><italic>0</italic><underline>0</underline><strikeout>0</strikeout></font></formatting>
+				</annotation>
+			</annotation_set>
+			<annotation_set><id>1</id><begin>28</begin><end>34</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="mark">
+					<id>1</id><begin>28</begin><end>34</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing>
+					<timeoutfading>15</timeoutfading><mode>0</mode><idRef>0</idRef>
+					<position><x>700</x><y>400</y></position><scene-size><width>1920</width><height>1080</height></scene-size>
+				</annotation>
+			</annotation_set>
+			<annotation_set><id>2</id><begin>75</begin><end>79</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="link">
+					<id>2</id><begin>75</begin><end>79</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing>
+					<timeoutfading>15</timeoutfading><mode>0</mode><value>www.ikea.com</value><position><x>540</x><y>600</y></position>
+					<scene-size><width>1920</width><height>1080</height></scene-size>
+				</annotation>
+			</annotation_set>
+			<annotation_set><id>4</id><begin>250</begin><end>255</end><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+				<annotation type="text">
+					<id>4</id><begin>750</begin><end>755</end><camera>-1</camera><timeoutvisualizing>30</timeoutvisualizing><timeoutfading>15</timeoutfading>
+					<mode>0</mode><value>tchau tia de rosa</value><position><x>960</x><y>540</y></position><scene-size><width>1920</width><height>1080</height></scene-size>
+					<formatting><color><red>1</red><green>0</green><blue>248</blue></color><font><family>.Helvetica Neue DeskInterface</family>
+					<size>13</size><bold>0</bold><italic>0</italic><underline>0</underline><strikeout>0</strikeout></font></formatting>
+				</annotation>
+			</annotation_set>
+			</annotations>
+		</take>
+	</session>
+</annotation_document>

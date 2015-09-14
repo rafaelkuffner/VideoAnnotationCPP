@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input>
+	<AnnotationsFile>DancePROTest.xml</AnnotationsFile>
+	<KinectTakeInfo>
+		<Take>
+			<Id>FirstCapture</Id>
+			<ColorPath>D:\Teste\CaptureKinect\1\color</ColorPath>
+			<DepthPath>D:\Teste\CaptureKinect\1\depth</DepthPath>
+		</Take>
+	</KinectTakeInfo>
+	<CalibrationFile>calibfileNovo2.xml</CalibrationFile>
+</input>
