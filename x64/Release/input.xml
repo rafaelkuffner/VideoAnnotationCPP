@@ -6,6 +6,7 @@
 			<Id>FirstCapture</Id>
 			<ColorPath>E:\Teste\CaptureKinect\1\color</ColorPath>
 			<DepthPath>E:\Teste\CaptureKinect\1\depth</DepthPath>
+			<bgPath>E:\Teste\CaptureKinect\1\color\color0,0.bmp</bgPath>
 		</Take>
 	</KinectTakeInfo>
 	<CalibrationFile>calibfileNovo2.xml</CalibrationFile>

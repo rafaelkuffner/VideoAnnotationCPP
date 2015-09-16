@@ -31,8 +31,10 @@ using namespace cv;
 struct Take
 {
 	string name;
+	int bgFrame;
 	string colorPath;
 	string depthpath;
+	string bgPath;
 };
 
 
@@ -61,6 +63,8 @@ string cameraPath;
 int ntakes;
 vector<Take> takes;
 ushort depths[217088];
+Mat bgVid;
+Mat bgKin;
 
 ushort getDepthValueAt(string dpath,int x, int y){
 	//Reading data
@@ -193,13 +197,46 @@ void loadParams(const char* path){
 	ntakes = 0;
 	while (t != NULL){
 		string name = t->FirstChildElement("Id")->GetText();
+		int bgFrame = atoi(t->FirstChildElement("bgFrame")->GetText());
 		string colorPath = t->FirstChildElement("ColorPath")->GetText();
 		string depthPath = t->FirstChildElement("DepthPath")->GetText();
-		Take muhtake = { name, colorPath, depthPath };
+		string bgpath = t->FirstChildElement("BgPath")->GetText();
+		Take muhtake = { name, bgFrame,colorPath, depthPath,bgpath };
 		takes.push_back(muhtake);
 		t = t->NextSiblingElement();
 		ntakes++;
 	}
+}
+
+Mat getBgVideo(Take t){
+	printf("requested: %.2f (frame)\n", t.bgFrame);
+	int res = avformat_seek_file(pFormatCtx, videoStream, INT64_MIN, t.bgFrame, INT64_MAX, AVSEEK_FLAG_ANY);
+	avcodec_flush_buffers(pCodecCtx);
+	int nframe = 0;
+	bool notdone = true;
+	while (av_read_frame(pFormatCtx, &packet) >= 0) {
+
+		// Is this a packet from the video stream?
+		if (packet.stream_index == videoStream) {
+			// Decode video frame
+			avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, &packet);
+			// Did we get a video frame?
+			if (frameFinished) {
+
+				// Convert the image from its native format to RGB
+				sws_scale(sws_ctx, (uint8_t const * const *)pFrame->data,
+					pFrame->linesize, 0, pCodecCtx->height,
+					pFrameRGB->data, pFrameRGB->linesize);
+
+				cv::Mat img_vid(pFrame->height,
+					pFrame->width,
+					CV_8UC3,
+					pFrameRGB->data[0]);
+				return img_vid;
+			}
+		}
+	}
+
 }
 
 void processAnnotations(tinyxml2::XMLDocument *doc, tinyxml2::XMLElement *annotation, Take t ){
@@ -294,11 +331,12 @@ void processAnnotations(tinyxml2::XMLDocument *doc, tinyxml2::XMLElement *annota
 				SiftFeatureDetector sift = cv::SiftFeatureDetector();
 				SurfFeatureDetector surf(minHessian);
 				std::vector<KeyPoint> keypoints_video, keypoints_kin;
-				Mat grayKin;
-				Mat grayVid;
+			
 			
 			//	cvtColor(img_kin, img_kin, CV_BGR2GRAY);
 			//	cvtColor(img_vid, img_vVid, CV_BGR2GRAY);
+				img_kin = img_kin - bgKin;
+				img_vid = img_vid - bgVid;
 
 				surf.detect(img_kin, keypoints_kin);
 				surf.detect(img_vid, keypoints_video);
@@ -444,6 +482,9 @@ int main(int argc, const char* argv[])
 
 			//look through xml
 			tinyxml2::XMLElement *annotation = take->FirstChildElement("annotations")->FirstChildElement("annotation_set");
+
+			bgKin = imread(takeobj.bgPath, CV_LOAD_IMAGE_COLOR);
+			bgVid = getBgVideo(takeobj);
 
 			while (annotation != NULL){
 				processAnnotations(doc, annotation, takeobj);
