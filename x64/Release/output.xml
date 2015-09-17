@@ -47,9 +47,9 @@
                             </font>
                         </formatting>
                         <positionKin>
-                            <x>0.099448055</x>
-                            <y>0.29947227</y>
-                            <z>4.7020001</z>
+                            <x>1.3719064</x>
+                            <y>-0.68696505</y>
+                            <z>3.3239999</z>
                         </positionKin>
                     </annotation>
                 </annotation_set>
@@ -92,9 +92,9 @@
                             </font>
                         </formatting>
                         <positionKin>
-                            <x>0.062709242</x>
-                            <y>0.19237673</y>
-                            <z>3.0339999</z>
+                            <x>0</x>
+                            <y>-0</y>
+                            <z>0</z>
                         </positionKin>
                     </annotation>
                 </annotation_set>
@@ -137,9 +137,9 @@
                             </font>
                         </formatting>
                         <positionKin>
-                            <x>1.0747088</x>
-                            <y>-0.25154838</y>
-                            <z>2.4059999</z>
+                            <x>1.0613043</x>
+                            <y>-0.24954842</y>
+                            <z>2.382</z>
                         </positionKin>
                     </annotation>
                 </annotation_set>
@@ -182,9 +182,9 @@
                             </font>
                         </formatting>
                         <positionKin>
-                            <x>0.066483565</x>
-                            <y>0.17959666</y>
-                            <z>2.859</z>
+                            <x>-0.35153437</x>
+                            <y>0.54685467</y>
+                            <z>4.6529999</z>
                         </positionKin>
                     </annotation>
                 </annotation_set>
@@ -755,9 +755,9 @@
                             </font>
                         </formatting>
                         <positionKin>
-                            <x>-0.7591359</x>
-                            <y>0.13300852</y>
-                            <z>1.878</z>
+                            <x>2.0001724</x>
+                            <y>1.3722129</y>
+                            <z>4.8179998</z>
                         </positionKin>
                     </annotation>
                 </annotation_set>

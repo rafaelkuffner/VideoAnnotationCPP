@@ -10,7 +10,7 @@ extern "C"{
 	#include <libavformat/avformat.h>
 	#include <libswscale/swscale.h>
 }
-
+#include "opencv2/video/background_segm.hpp"
 #include "opencv2/core/core.hpp""
 #include "opencv2/features2d/features2d.hpp"
 #include "opencv2/nonfree/features2d.hpp"
@@ -161,14 +161,14 @@ int openFFMPEGVideo(string path){
 		return -1;
 
 	// Determine required buffer size and allocate buffer
-	numBytes = avpicture_get_size(PIX_FMT_RGB24, pCodecCtx->width,
+	numBytes = avpicture_get_size(AV_PIX_FMT_RGB24, pCodecCtx->width,
 		pCodecCtx->height);
 	buffer = (uint8_t *)av_malloc(numBytes*sizeof(uint8_t));
 
 	// Assign appropriate parts of buffer to image planes in pFrameRGB
 	// Note that pFrameRGB is an AVFrame, but AVFrame is a superset
 	// of AVPicture
-	avpicture_fill((AVPicture *)pFrameRGB, buffer, PIX_FMT_RGB24,
+	avpicture_fill((AVPicture *)pFrameRGB, buffer, AV_PIX_FMT_RGB24,
 		pCodecCtx->width, pCodecCtx->height);
 
 	// initialize SWS context for software scaling
@@ -177,7 +177,7 @@ int openFFMPEGVideo(string path){
 		pCodecCtx->pix_fmt,
 		pCodecCtx->width,
 		pCodecCtx->height,
-		PIX_FMT_BGR24,
+		AV_PIX_FMT_BGR24,
 		SWS_BILINEAR,
 		NULL,
 		NULL,
@@ -198,9 +198,10 @@ void loadParams(const char* path){
 	while (t != NULL){
 		string name = t->FirstChildElement("Id")->GetText();
 		int bgFrame = atoi(t->FirstChildElement("bgFrame")->GetText());
+		std::cout << bgFrame;
 		string colorPath = t->FirstChildElement("ColorPath")->GetText();
 		string depthPath = t->FirstChildElement("DepthPath")->GetText();
-		string bgpath = t->FirstChildElement("BgPath")->GetText();
+		string bgpath = t->FirstChildElement("bgPath")->GetText();
 		Take muhtake = { name, bgFrame,colorPath, depthPath,bgpath };
 		takes.push_back(muhtake);
 		t = t->NextSiblingElement();
@@ -208,8 +209,8 @@ void loadParams(const char* path){
 	}
 }
 
-Mat getBgVideo(Take t){
-	printf("requested: %.2f (frame)\n", t.bgFrame);
+string getBgVideo(Take t){
+	printf("requested: %d (frame)\n", t.bgFrame);
 	int res = avformat_seek_file(pFormatCtx, videoStream, INT64_MIN, t.bgFrame, INT64_MAX, AVSEEK_FLAG_ANY);
 	avcodec_flush_buffers(pCodecCtx);
 	int nframe = 0;
@@ -228,11 +229,13 @@ Mat getBgVideo(Take t){
 					pFrame->linesize, 0, pCodecCtx->height,
 					pFrameRGB->data, pFrameRGB->linesize);
 
-				cv::Mat img_vid(pFrame->height,
+				cv::Mat img(pFrame->height,
 					pFrame->width,
 					CV_8UC3,
 					pFrameRGB->data[0]);
-				return img_vid;
+
+				imwrite("vidbg.jpg", img);
+				return "vidbg.jpg";
 			}
 		}
 	}
@@ -326,22 +329,27 @@ void processAnnotations(tinyxml2::XMLDocument *doc, tinyxml2::XMLElement *annota
 
 
 				//-- Step 1: Detect the keypoints using SURF Detector
-				int minHessian = 2500;
+				int minHessian = 1500;
 				StarFeatureDetector star = cv::StarDetector();
 				SiftFeatureDetector sift = cv::SiftFeatureDetector();
 				SurfFeatureDetector surf(minHessian);
 				std::vector<KeyPoint> keypoints_video, keypoints_kin;
 			
-			
-			//	cvtColor(img_kin, img_kin, CV_BGR2GRAY);
-			//	cvtColor(img_vid, img_vVid, CV_BGR2GRAY);
-				img_kin = img_kin - bgKin;
-				img_vid = img_vid - bgVid;
+
+				img_kin = bgKin  - img_kin;
+				cv::bitwise_not(img_kin, img_kin);
+				img_vid = bgVid - img_vid;
+				cv::bitwise_not(img_vid, img_vid);
+			//	cv::Mat foremask;
+			//	cv::BackgroundSubtractorMOG2 bg;
+			//	bg.set("nmixtures", 3);
+			//	bg.operator()(bgVid, foremask);
+			//	bg.operator()(img_vid, foremask);
 
 				surf.detect(img_kin, keypoints_kin);
 				surf.detect(img_vid, keypoints_video);
 				
-				
+			
 				// computing descriptors
 				SurfDescriptorExtractor extractor;
 				//SiftDescriptorExtractor extractor;
@@ -484,7 +492,11 @@ int main(int argc, const char* argv[])
 			tinyxml2::XMLElement *annotation = take->FirstChildElement("annotations")->FirstChildElement("annotation_set");
 
 			bgKin = imread(takeobj.bgPath, CV_LOAD_IMAGE_COLOR);
-			bgVid = getBgVideo(takeobj);
+			cv::flip(bgKin, bgKin, 1);
+			getBgVideo(takeobj);
+			bgVid = imread("vidbg.jpg", CV_LOAD_IMAGE_COLOR);
+
+
 
 			while (annotation != NULL){
 				processAnnotations(doc, annotation, takeobj);

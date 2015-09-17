@@ -155,7 +155,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>D:\Software\tinyxml2-master\tinyxml2\bin\x64-Release-Dll;D:\Software\opencv\build\x64\vc12\lib;D:\Software\ffmpeg\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;swscale.lib;opencv_features2d249.lib;opencv_core249.lib;opencv_nonfree249.lib;opencv_highgui249.lib;opencv_flann249.lib;opencv_imgproc249.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;swscale.lib;opencv_features2d249.lib;opencv_core249.lib;opencv_nonfree249.lib;opencv_highgui249.lib;opencv_flann249.lib;opencv_imgproc249.lib;opencv_video249.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

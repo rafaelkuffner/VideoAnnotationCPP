@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <input>
-	<AnnotationsFile>TestDancePRO.xml</AnnotationsFile>
+	<AnnotationsFile>dancePro_test2.xml</AnnotationsFile>
 	<KinectTakeInfo>
 		<Take>
-			<Id>VideoCortado</Id>
-			<ColorPath>D:\VideoAnnotationCPP\VideoAnnotationCPP\x64\Release\color</ColorPath>
-			<DepthPath>D:\VideoAnnotationCPP\VideoAnnotationCPP\x64\Release\depth</DepthPath>
+			<Id>FirstCapture</Id>
+			<bgFrame>225</bgFrame>
+			<ColorPath>E:\Teste\CaptureKinect\1\color</ColorPath>
+			<DepthPath>E:\Teste\CaptureKinect\1\depth</DepthPath>
+			<bgPath>E:\Teste\CaptureKinect\1\color\color7,13.bmp</bgPath>
 		</Take>
 	</KinectTakeInfo>
 	<CalibrationFile>calibfileNovo2.xml</CalibrationFile>
