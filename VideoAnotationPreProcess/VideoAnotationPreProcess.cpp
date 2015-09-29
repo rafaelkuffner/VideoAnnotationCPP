@@ -421,6 +421,7 @@ void processAnnotations(tinyxml2::XMLDocument *doc, tinyxml2::XMLElement *annota
 
 				//Getting Z value
 				Point2f position = keypoints_kin[matches[minindex].imgIdx].pt;
+				position.x = 512 - position.x;
 				std::stringstream ss;
 				ss << t.depthpath << "\\depthdata" << seconds << "," << frames;
 				ushort depth = getDepthValueAt(ss.str(), position.x, position.y);
